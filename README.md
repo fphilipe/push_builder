@@ -1,29 +1,53 @@
 # PushBuilder
 
-TODO: Write a gem description
+PushBuilder was born with one mission only: construct JSON payloads for Apple's push notification service.
 
-## Installation
+## What it Does
 
-Add this line to your application's Gemfile:
-
-    gem 'push_builder'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install push_builder
+- Automatically crops the alert so that the payload does not exceed the allowed 256 bytes.
+- Supports specifying custom data (data that the iOS app can read from the push notification).
+- Supports specifying data for a third party (data that is intended for a "man in the middle" such as Urban Airship; this data is assumed to be stripped from the payload by the third party and thus does not count towards the 256 bytes limit).
+- Performs some basic type checking.
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+PushBuilder.build(alert: 'Hello World!', badge: 3, sound: 'default').to_json
+# => {"aps":{"badge":3,"alert":"Hello World!","sound":"default"}}
 
-## Contributing
+# Specifying custom data:
+payload = PushBuilder.build(alert: 'Hello World!')
+payload.custom_data[:notification_id] = 1234
+payload.to_json
+# => {"notification_id":1234,"aps":{"alert":"Hello World!"}}
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+# Specifying third party data (such as UrbanAirship aliases):
+payload = PushBuilder.build(alert: 'Hello World!')
+payload.third_party_data[:aliases] = %w[ 123 456 789 ]
+payload.to_json
+# => {"aliases":["123","456","789"],"aps":{"alert":"Hello World!"}}
+
+# Auto crops alerts to not exceed max payload size of 256 bytes:
+PushBuilder.build(alert: 'Hello World ' * 100, badge: 3, sound: 'default').to_json
+# => {"aps":{"badge":3,"alert":"Hello World [...] H…","sound":"default"}}
+```
+
+## Limitations
+
+The `alert` key of the `aps` dictionary only supports strings at the moment.
+Technically, the alert can be customized further as described in [PAYLOAD.md](PAYLOAD.md).
+
+## Additional Information
+
+### Useful Links
+
+- [Anatomy of a Payload](PAYLOAD.md)
+- [Local and Push Notification Programming Guide](http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html)
+
+### Maintainers
+
+- Philipe Fatio ([@fphilipe](https://github.com/fphilipe))
+
+### License
+
+MIT License. Copyright 2013 Philipe Fatio
