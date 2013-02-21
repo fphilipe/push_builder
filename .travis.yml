@@ -1,0 +1,9 @@
+language: ruby
+script: "bundle exec rspec"
+rvm:
+  - 1.9.2
+  - 1.9.3
+  - ruby-head
+matrix:
+  allow_failures:
+    - rvm: ruby-head
