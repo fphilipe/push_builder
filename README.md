@@ -56,3 +56,7 @@ Technically, the alert can be customized further as described in [PAYLOAD.md](PA
 ### License
 
 MIT License. Copyright 2013 Philipe Fatio
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/fphilipe/push_builder/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
