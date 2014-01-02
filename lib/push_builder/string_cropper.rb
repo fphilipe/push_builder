@@ -2,7 +2,7 @@
 
 module PushBuilder
   class StringCropper
-    DEFAULT_CROP_INDICATOR = ?…
+    DEFAULT_CROP_INDICATOR = '…'
 
     attr_reader :string, :indicator
 
