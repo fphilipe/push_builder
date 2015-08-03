@@ -1,9 +1,9 @@
 # PushBuilder
 
-[![Build Status](https://travis-ci.org/fphilipe/push_builder.png)](https://travis-ci.org/fphilipe/push_builder)
-[![Gem Version](https://badge.fury.io/rb/push_builder.png)](http://badge.fury.io/rb/push_builder)
-[![Dependency Status](https://gemnasium.com/fphilipe/push_builder.png)](https://gemnasium.com/fphilipe/push_builder)
-[![Code Climate](https://codeclimate.com/github/fphilipe/push_builder.png)](https://codeclimate.com/github/fphilipe/push_builder)
+[![Build Status](https://travis-ci.org/fphilipe/push_builder.svg)](https://travis-ci.org/fphilipe/push_builder)
+[![Gem Version](https://badge.fury.io/rb/push_builder.svg)](http://badge.fury.io/rb/push_builder)
+[![Dependency Status](https://gemnasium.com/fphilipe/push_builder.svg)](https://gemnasium.com/fphilipe/push_builder)
+[![Code Climate](https://codeclimate.com/github/fphilipe/push_builder.svg)](https://codeclimate.com/github/fphilipe/push_builder)
 
 PushBuilder was born with one mission only: construct JSON payloads for Apple's push notification service.
 
